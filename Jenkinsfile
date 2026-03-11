@@ -12,7 +12,11 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'pip install -r requirements.txt'
+                sh '''
+                    apt-get update -y
+                    apt-get install -y python3 python3-pip
+                    pip3 install -r requirements.txt
+                '''
             }
         }
 
